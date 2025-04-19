@@ -24,10 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${roboto.variable} flex h-screen w-screen items-center justify-center antialiased`}
+        className={`${roboto.variable} flex h-screen w-screen items-center justify-center overflow-hidden antialiased`}
       >
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )
 }
+

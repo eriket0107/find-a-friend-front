@@ -1,8 +1,6 @@
 'use client'
-import { getLocation } from '@/services/locaiton'
+import { useLocation } from '@/services/location/use-location'
 import { useEffect, useState } from 'react'
-import useSWR from 'swr'
-import { useLocation } from '../use-location/useLocation'
 
 export const useGetLocation = () => {
   const [coords, setCoords] = useState<{
@@ -74,3 +72,4 @@ export const useGetLocation = () => {
     permissionStatus,
   }
 }
+
