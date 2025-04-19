@@ -35,6 +35,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-## An App for you to find nearstest to you
+## An App for you to find nearest to you
 
-<img src="/public//image.png" width="400px" height="300px"/>
+<img src="/public/image.png" width="400px" height="300px"/>
