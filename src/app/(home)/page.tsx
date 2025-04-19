@@ -1,17 +1,18 @@
 import Image from 'next/image'
 import logoSimple from '@/assets/logo/logo-full-find-a-friend.svg'
 import dogHero from '@/assets/images/dog-hero.png'
-import { Button } from '@/components/ui/button'
 import { HeroButton } from '@/components/HeroButton/HeroButton'
 
 export default function Home() {
   return (
     <main className="lg:bg-brand-primary relative flex h-full w-full flex-row items-center justify-center gap-50 overflow-hidden rounded-2xl p-26">
-      <div className="flex h-full max-h-[620px] max-w-[400px] flex-col items-start justify-between">
+      <div className="flex h-full max-h-[620px] max-w-[460px] flex-col items-start justify-between">
         <Image src={logoSimple} alt="Logo" width={200} height={200} />
-        <h1 className="max-w-[512px] text-7xl font-bold">
+        <h1 className="text-5xl font-bold">
           Leve
-          <br /> a felicidade <br />
+          <br />
+          a felicidade
+          <br />
           para o seu lar
         </h1>
         <div className="flex h-full max-h-[100px] items-center justify-center">
@@ -28,9 +29,9 @@ export default function Home() {
           <HeroButton to="/sim" className="h-7 p-0" />
         </div>
       </div>
-      <div className="bg-brand-primary-darker absolute right-[-90px] z-10 h-[603px] w-50 rounded-2xl" />
-      <div className="bg-brand-primary-darker absolute right-[126] bottom-[-10px] z-10 h-[100px] w-[420px] rounded-2xl" />
-      <div className="bg-brand-primary-darker absolute right-[-40px] bottom-[-10px] z-10 h-[100px] w-[150px] rounded-2xl" />
+      <div className="bg-brand-primary-darker absolute right-[-120px] z-10 h-[603px] w-50 rounded-2xl" />
+      <div className="bg-brand-primary-darker absolute right-[100px] bottom-[-10px] z-10 h-[100px] w-[420px] rounded-2xl" />
+      <div className="bg-brand-primary-darker absolute right-[-70px] bottom-[-10px] z-10 h-[100px] w-[150px] rounded-2xl" />
     </main>
   )
 }
