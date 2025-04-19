@@ -2,15 +2,13 @@ import Image from 'next/image'
 import logoSimple from '@/assets/logo/logo-full-find-a-friend.svg'
 import dogHero from '@/assets/images/dog-hero.png'
 import { HeroButton } from '@/components/HeroButton/HeroButton'
-import { api } from '@/services/api'
 import { Location } from '@/components/Location'
-import { Suspense } from 'react'
-import { LocationSkeleton } from '@/components/Location/LocationSkeleton'
+
 export default async function Home() {
   return (
     <main className="lg:bg-brand-primary relative flex h-full w-full flex-row items-center justify-center gap-50 overflow-hidden rounded-2xl p-26">
       <div className="flex h-full max-h-[620px] max-w-[460px] flex-col items-start justify-between">
-        <div className="flex flex-col items-start gap-3">
+        <div className="flex flex-col items-start gap-4">
           <Image src={logoSimple} alt="Logo" width={200} height={200} />
           <Location />
         </div>

@@ -2,6 +2,7 @@
 import { getLocation } from '@/services/locaiton'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
+import { useLocation } from '../use-location/useLocation'
 
 export const useGetLocation = () => {
   const [coords, setCoords] = useState<{
@@ -11,32 +12,65 @@ export const useGetLocation = () => {
     latitude: 0,
     longitude: 0,
   })
+  const [permissionStatus, setPermissionStatus] =
+    useState<PermissionState>('prompt')
+  const [locationError, setLocationError] = useState<string>('')
 
   useEffect(() => {
-    window.navigator.geolocation.getCurrentPosition((position) => {
-      setCoords({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      })
+    if (!navigator.geolocation) {
+      setLocationError('Geolocation is not supported by your browser')
+      return
+    }
+    navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+      setPermissionStatus(result.state)
+
+      result.onchange = () => {
+        setPermissionStatus(result.state)
+      }
     })
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setCoords({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        })
+        setLocationError('')
+      },
+      (error) => {
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            setLocationError(
+              'Please enable location access to use this feature'
+            )
+            break
+          case error.POSITION_UNAVAILABLE:
+            setLocationError('Location information is unavailable')
+            break
+          case error.TIMEOUT:
+            setLocationError('Location request timed out')
+            break
+          default:
+            setLocationError('An unknown error occurred')
+        }
+      }
+    )
   }, [])
 
-  const { data, error, isLoading } = useSWR(
-    {
-      url: '/location',
-      params: {
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-      },
+  const { location, error, isLoading } = useLocation({
+    permissionStatus,
+    coords,
+    options: {
+      revalidateOnFocus: false,
     },
-    getLocation
-  )
+  })
 
-  console.log(data)
+  const mapLink = `${process.env.NEXT_PUBLIC_API_GOOGLE_MAPS}@${coords.latitude},${coords.longitude}`
 
   return {
-    location: data,
-    error,
+    location: { ...location, mapLink },
+    error: locationError || error,
     isLoading,
+    permissionStatus,
   }
 }
