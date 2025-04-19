@@ -4,8 +4,9 @@ export default function HomeLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="bg-background flex h-full max-h-[820px] w-full max-w-[1280px] flex-col items-center justify-center">
+    <div className="lg:bg-background bg-brand-primary flex h-screen w-full flex-col items-center justify-center md:h-full lg:max-h-[820px] lg:max-w-[1280px]">
       {children}
     </div>
   )
 }
+

@@ -1,42 +1,55 @@
 import Image from 'next/image'
 import logoSimple from '@/assets/logo/logo-full-find-a-friend.svg'
 import dogHero from '@/assets/images/dog-hero.png'
+import ilustrationHero from '@/assets/images/hero-find-a-friend.png'
 import { HeroButton } from '@/components/HeroButton/HeroButton'
 import { Location } from '@/components/Location'
 
 export default async function Home() {
   return (
-    <main className="lg:bg-brand-primary relative flex h-full w-full flex-row items-center justify-center gap-50 overflow-hidden rounded-2xl p-26">
-      <div className="flex h-full max-h-[620px] max-w-[460px] flex-col items-start justify-between">
-        <div className="flex flex-col items-start gap-4">
+    <main className="bg-brand-primary relative flex w-full flex-1 flex-col justify-evenly gap-5 rounded-2xl p-6 lg:h-full lg:flex-row lg:gap-50 lg:overflow-hidden lg:p-26">
+      <div className="flex max-h-[620px] max-w-[460px] flex-col justify-between gap-8 md:items-start">
+        <div className="hidden flex-col items-start gap-3 lg:flex lg:gap-4">
           <Image src={logoSimple} alt="Logo" width={200} height={200} />
           <Location />
         </div>
+        <div className="flex w-full items-center justify-between gap-3 lg:hidden lg:gap-4">
+          <Image src={logoSimple} alt="Logo" width={120} height={120} />
+          <Location />
+        </div>
 
-        <h1 className="text-5xl font-bold">
-          Leve
-          <br />
-          a felicidade
-          <br />
-          para o seu lar
+        <h1 className="text-[40px] font-bold md:text-6xl">
+          Leve a felicidade para o seu lar
         </h1>
-        <div className="flex h-full max-h-[100px] items-center justify-center">
+        <div className="flex items-center justify-center lg:max-h-[100px]">
           <p className="text-2xl font-bold">
             Encontre o animal de estimação ideal para seu estilo de vida!
           </p>
         </div>
       </div>
-      <div className="flex h-full max-h-[600px] max-w-[500px] flex-col items-start justify-between">
-        <div className="relative rounded-2xl bg-linear-to-tr from-[#E44449] to-[#F36A6F]">
-          <Image src={dogHero} alt="Logo" height={500} />
+      <div className="hidden max-h-[600px] max-w-[500px] flex-col items-start justify-center gap-5 lg:flex lg:justify-between">
+        <div className="relative h-full max-h-[500px] w-[400px] rounded-2xl bg-linear-to-tr from-[#E44449] to-[#F36A6F]">
+          <Image
+            src={dogHero}
+            alt="Logo"
+            height={500}
+            className="absolute left-0"
+          />
         </div>
-        <div className="bg-brand-primary-darker w-full rounded-2xl pt-6 pr-8 pb-6 pl-8">
+        <div className="bg-brand-primary-darker hidden w-full rounded-2xl pt-6 pr-8 pb-6 pl-8 md:flex">
           <HeroButton to="/sim" className="h-7 p-0" />
         </div>
       </div>
-      <div className="bg-brand-primary-darker absolute right-[-120px] z-10 h-[600px] w-50 rounded-2xl" />
-      <div className="bg-brand-primary-darker absolute right-[104px] bottom-[-10px] z-10 h-[100px] w-[412px] rounded-2xl" />
-      <div className="bg-brand-primary-darker absolute right-[-70px] bottom-[-10px] z-10 h-[100px] w-[150px] rounded-2xl" />
+      <div className="max-h-[350px]rounded-2xl relative bg-linear-to-tr from-[#E44449] to-[#F36A6F] lg:hidden">
+        <Image src={ilustrationHero} alt="Logo" />
+        <div className="absolute right-[40px] bottom-[20px]">
+          <HeroButton to="/sim" />
+        </div>
+      </div>
+      <div className="bg-brand-primary-darker absolute right-[-120px] z-10 hidden h-[600px] w-50 rounded-2xl lg:flex" />
+      <div className="bg-brand-primary-darker absolute right-[104px] bottom-[-10px] z-10 hidden h-[100px] w-[400px] rounded-2xl lg:flex" />
+      <div className="bg-brand-primary-darker absolute right-[-70px] bottom-[-10px] z-10 hidden h-[100px] w-[150px] rounded-2xl lg:flex" />
     </main>
   )
 }
+

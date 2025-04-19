@@ -2,7 +2,7 @@
   "plugins": [
     "prettier-plugin-tailwindcss"
   ],
-  "endOfLine": "lf",
+  "endOfLine": "crlf",
   "arrowParens": "always",
   "printWidth": 80,
   "tabWidth": 2,

@@ -26,7 +26,6 @@ const eslintConfig = [
       "@typescript-eslint/no-require-imports": "error",
       "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/no-empty-object-type": "error",
-
       eqeqeq: "off",
       "no-unused-vars": "error",
       "prefer-const": ["error", { ignoreReadBeforeAssign: true }],

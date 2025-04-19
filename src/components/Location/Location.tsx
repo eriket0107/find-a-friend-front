@@ -1,19 +1,18 @@
 'use client'
 import { useGetLocation } from '@/hooks/use-get-location'
 import { LocationSkeleton } from './LocationSkeleton'
-import { MapPin, X } from 'lucide-react'
+import { Info, MapPin, X } from 'lucide-react'
 import Link from 'next/link'
 
 export const Location = () => {
   const { location, isLoading, permissionStatus } = useGetLocation()
-  console.log(location)
   if (isLoading) return <LocationSkeleton />
 
   if (permissionStatus === 'denied')
     return (
-      <p className="flex items-center gap-2 text-sm font-medium underline hover:opacity-80">
-        <X className="h-4 w-4" />
-        <p>Permita localização</p>
+      <p className="flex items-center gap-2 text-sm font-medium hover:opacity-80">
+        <Info className="h-4 w-4" />
+        <p>Habilite a localização</p>
       </p>
     )
 
@@ -30,3 +29,4 @@ export const Location = () => {
     </Link>
   )
 }
+
