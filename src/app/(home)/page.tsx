@@ -21,7 +21,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div className="flex max-w-[500px] flex-col items-start justify-center gap-2">
+      <div className="flex h-full max-h-[600px] max-w-[500px] flex-col items-start justify-between">
         <div className="relative rounded-2xl bg-linear-to-tr from-[#E44449] to-[#F36A6F]">
           <Image src={dogHero} alt="Logo" height={500} />
         </div>
@@ -29,7 +29,7 @@ export default function Home() {
           <HeroButton to="/sim" className="h-7 p-0" />
         </div>
       </div>
-      <div className="bg-brand-primary-darker absolute right-[-120px] z-10 h-[603px] w-50 rounded-2xl" />
+      <div className="bg-brand-primary-darker absolute right-[-120px] z-10 h-[600px] w-50 rounded-2xl" />
       <div className="bg-brand-primary-darker absolute right-[100px] bottom-[-10px] z-10 h-[100px] w-[420px] rounded-2xl" />
       <div className="bg-brand-primary-darker absolute right-[-70px] bottom-[-10px] z-10 h-[100px] w-[150px] rounded-2xl" />
     </main>
