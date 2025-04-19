@@ -2,12 +2,19 @@ import Image from 'next/image'
 import logoSimple from '@/assets/logo/logo-full-find-a-friend.svg'
 import dogHero from '@/assets/images/dog-hero.png'
 import { HeroButton } from '@/components/HeroButton/HeroButton'
-
-export default function Home() {
+import { api } from '@/services/api'
+import { Location } from '@/components/Location'
+import { Suspense } from 'react'
+import { LocationSkeleton } from '@/components/Location/LocationSkeleton'
+export default async function Home() {
   return (
     <main className="lg:bg-brand-primary relative flex h-full w-full flex-row items-center justify-center gap-50 overflow-hidden rounded-2xl p-26">
       <div className="flex h-full max-h-[620px] max-w-[460px] flex-col items-start justify-between">
-        <Image src={logoSimple} alt="Logo" width={200} height={200} />
+        <div className="flex flex-col items-start gap-3">
+          <Image src={logoSimple} alt="Logo" width={200} height={200} />
+          <Location />
+        </div>
+
         <h1 className="text-5xl font-bold">
           Leve
           <br />
@@ -30,7 +37,7 @@ export default function Home() {
         </div>
       </div>
       <div className="bg-brand-primary-darker absolute right-[-120px] z-10 h-[600px] w-50 rounded-2xl" />
-      <div className="bg-brand-primary-darker absolute right-[100px] bottom-[-10px] z-10 h-[100px] w-[420px] rounded-2xl" />
+      <div className="bg-brand-primary-darker absolute right-[104px] bottom-[-10px] z-10 h-[100px] w-[412px] rounded-2xl" />
       <div className="bg-brand-primary-darker absolute right-[-70px] bottom-[-10px] z-10 h-[100px] w-[150px] rounded-2xl" />
     </main>
   )
