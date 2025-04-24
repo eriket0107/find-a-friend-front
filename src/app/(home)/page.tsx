@@ -5,6 +5,10 @@ import ilustrationHero from '@/assets/images/hero-find-a-friend.png'
 import { HeroButton } from '@/components/HeroButton/HeroButton'
 import { Location } from '@/components/Location'
 
+const path = {
+  signIn: '/sign-in',
+}
+
 export default async function Home() {
   return (
     <main className="bg-brand-primary relative flex w-full flex-1 flex-col justify-evenly gap-5 rounded-2xl p-6 lg:h-full lg:flex-row lg:gap-50 lg:overflow-hidden lg:p-26">
@@ -29,21 +33,16 @@ export default async function Home() {
       </div>
       <div className="hidden max-h-[600px] max-w-[500px] flex-col items-start justify-center gap-5 lg:flex lg:justify-between">
         <div className="relative h-full max-h-[500px] w-[400px] rounded-2xl bg-linear-to-tr from-[#E44449] to-[#F36A6F]">
-          <Image
-            src={dogHero}
-            alt="Logo"
-            height={500}
-            className="absolute left-0"
-          />
+          <Image src={dogHero} alt="Logo" className="absolute left-0" />
         </div>
         <div className="bg-brand-primary-darker hidden w-full rounded-2xl pt-6 pr-8 pb-6 pl-8 md:flex">
-          <HeroButton to="/sim" className="h-7 p-0" />
+          <HeroButton to={path.signIn} className="h-7 p-0" />
         </div>
       </div>
-      <div className="max-h-[350px]rounded-2xl relative bg-linear-to-tr from-[#E44449] to-[#F36A6F] lg:hidden">
+      <div className="max-h-[350px]rounded-2xl relative rounded-xl bg-linear-to-tr from-[#E44449] to-[#F36A6F] lg:hidden">
         <Image src={ilustrationHero} alt="Logo" />
         <div className="absolute right-[40px] bottom-[20px]">
-          <HeroButton to="/sim" />
+          <HeroButton to={path.signIn} />
         </div>
       </div>
       <div className="bg-brand-primary-darker absolute right-[-120px] z-10 hidden h-[600px] w-50 rounded-2xl lg:flex" />

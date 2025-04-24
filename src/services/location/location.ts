@@ -11,6 +11,7 @@ const getLocation = async ({ params }: {
     return response.data
   } catch (error) {
     console.error(error)
+    console.log(error)
     return error
   }
 }
