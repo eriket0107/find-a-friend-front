@@ -3,11 +3,11 @@ import { Card, CardContent, CardTitle } from '@/components/ui/card'
 
 export default function SignIn() {
   return (
-    <Card className="flex w-full max-w-[400px] gap-30 bg-white shadow-none">
+    <Card className="flex h-full max-h-[660px] w-full max-w-[400px] gap-30 bg-white shadow-none">
       <CardTitle className="text-primary p-0 text-left text-5xl font-bold">
         Boas vindas!
       </CardTitle>
-      <CardContent className="flex flex-col gap-4 p-0">
+      <CardContent className="flex flex-1 flex-col gap-4 p-0">
         <SignInForm />
       </CardContent>
     </Card>

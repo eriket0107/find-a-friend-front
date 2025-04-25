@@ -10,27 +10,41 @@ import { Button } from '../Button'
 
 export const SignInForm = () => {
   const { methods, onSubmit } = useSignIn()
+  const { errors } = methods.formState
 
   return (
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className="flex flex-col gap-4"
+        className="flex h-full flex-col justify-between"
       >
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            placeholder="org@email.com"
-            {...methods.register('email')}
-          />
+        <div className="flex flex-col justify-between gap-4">
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="org@email.com"
+              {...methods.register('email')}
+              errorMessage={errors.email?.message}
+            />
+          </div>
+          <InputPassword name="password" error={errors.password?.message} />
         </div>
-        <InputPassword name="password" />
 
-        <Button type="submit" variant="primary">
-          Login
-        </Button>
+        <div className="flex w-full flex-col gap-4">
+          <Button type="submit" variant="primary" className="w-full">
+            Login
+          </Button>
+          <Button
+            variant="secondary"
+            className="w-full"
+            as="link"
+            href="/sign-up"
+          >
+            Cadastrar Organização
+          </Button>
+        </div>
       </form>
     </FormProvider>
   )

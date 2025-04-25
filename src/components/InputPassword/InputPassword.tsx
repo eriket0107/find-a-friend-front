@@ -9,11 +9,13 @@ import { useFormContext } from 'react-hook-form'
 type InputPasswordProps = {
   name: string
   label?: string
+  error?: string
 }
 
 export const InputPassword = ({
   name,
   label = 'Senha',
+  error,
 }: InputPasswordProps) => {
   const [showPassword, setShowPassword] = useState(false)
   const { register } = useFormContext()
@@ -26,6 +28,7 @@ export const InputPassword = ({
         id={name}
         type={showPassword ? 'text' : 'password'}
         placeholder="********"
+        errorMessage={error}
         icon={
           <Icon
             className="cursor-pointer text-gray-300"
