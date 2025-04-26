@@ -25,6 +25,21 @@ export const Button = ({
     text: 'bg-transparent border-none  shadow-none text-primary hover:opacity-70 hover:bg-transparent underline w-auto ',
   }
 
+  if (as === 'link' && href) {
+    return (
+      <Link
+        href={href}
+        className={cn(
+          'text-md flex h-[56px] items-center justify-center rounded-[20px] font-bold duration-1000',
+          variantClasses[variant],
+          props.className
+        )}
+      >
+        {children}
+      </Link>
+    )
+  }
+
   return (
     <ButtonComponent
       {...props}

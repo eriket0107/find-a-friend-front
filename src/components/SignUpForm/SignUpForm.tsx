@@ -4,38 +4,25 @@ import { FormProvider } from 'react-hook-form'
 import { Input } from '../Input'
 import { InputPassword } from '../InputPassword'
 import { Label } from '../Label'
-
 import { Button } from '../Button'
 import { useSignUp } from '@/hooks/useSignUp'
 import { useGetLocation } from '@/hooks/useGetLocation'
 import { Map } from '../Map'
 import { ArrowRight } from 'lucide-react'
-
-// {
-//   "name": "Teste Org",
-//   "email": "org1@gmail.com",
-//   "password": "123456",
-//   "cnpj": "46367217000135",
-//   "whatsapp": "21999999999",
-//   "street": "Av Alfredo Balthazar da silveira",
-//   "city": "Rio de Janeiro",
-//   "state": "Rio de Janeiro",
-//   "cep": "22790710",
-//   "country": "Brazil"
-// }
+import { InputMask } from '@react-input/mask'
+import debounce from 'debounce'
+import { useState, useEffect } from 'react'
 
 export const SignUpForm = () => {
   const { methods, onSubmit } = useSignUp()
   const location = useGetLocation()
-  console.log(location)
   const { errors } = methods.formState
 
   return (
     <FormProvider {...methods}>
       <Button
         variant="text"
-        className="flex h-auto w-full items-center gap-2 p-0"
-        linkClassName="flex w-full items-center gap-2  justify-center"
+        className="flex h-auto w-full items-center justify-center gap-2 p-0"
         as="link"
         href="/sign-in"
       >
@@ -53,7 +40,6 @@ export const SignUpForm = () => {
               type="text"
               placeholder="Sua Organização S.A"
               {...methods.register('name')}
-              // errorMessage={errors.email?.message}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -63,17 +49,17 @@ export const SignUpForm = () => {
               type="email"
               placeholder="org@email.com"
               {...methods.register('email')}
-              // errorMessage={errors.email?.message}
             />
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="cep">CEP</Label>
-            <Input
+            <InputMask
+              mask="_____-___"
+              replacement={{ _: /\d/ }}
+              component={Input}
               id="cep"
-              type="number"
-              placeholder="22222111"
+              placeholder="00000-000"
               {...methods.register('cep')}
-              // errorMessage={errors.email?.message}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -83,40 +69,31 @@ export const SignUpForm = () => {
               type="text"
               placeholder="Av Sua Rua"
               {...methods.register('address')}
-              // errorMessage={errors.email?.message}
             />
           </div>
 
-          <Map cep={methods.getValues('cep') || location.location.cep} />
+          <Map cep={methods.watch('cep')} />
           <div className="flex flex-col gap-2">
-            <Label htmlFor="address">Endereço</Label>
-            <Input
+            <Label htmlFor="whatsapp">WhatsApp</Label>
+            <InputMask
+              mask="(__) _____-____"
+              replacement={{ _: /\d/ }}
+              component={Input}
               id="whatsapp"
-              type="text"
-              placeholder="21999999999"
+              placeholder="(21) 99999-9999"
               {...methods.register('whatsapp')}
-              // errorMessage={errors.email?.message}
             />
           </div>
 
           <div className="flex flex-col gap-2">
-            <InputPassword
-              id="password"
-              placeholder="********"
-              {...methods.register('password')}
-              // errorMessage={errors.email?.message}
-            />
+            <InputPassword {...methods.register('password')} />
           </div>
           <div className="flex flex-col gap-2">
             <InputPassword
-              id="confirmPassword"
               label="Confirmar Senha"
-              placeholder="********"
               {...methods.register('confirmPassword')}
-              // errorMessage={errors.email?.message}
             />
           </div>
-          {/* <InputPassword name="password" error={errors.password?.message} /> */}
         </div>
 
         <div className="flex w-full flex-col gap-4">
