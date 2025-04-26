@@ -8,7 +8,7 @@ import { Button } from '../Button'
 import { useSignUp } from '@/hooks/useSignUp'
 import { useGetLocation } from '@/hooks/useGetLocation'
 import { Map } from '../Map'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Dog } from 'lucide-react'
 import { InputMask } from '@react-input/mask'
 import debounce from 'debounce'
 import { useState, useEffect } from 'react'
@@ -16,23 +16,16 @@ import { useState, useEffect } from 'react'
 export const SignUpForm = () => {
   const { methods, onSubmit } = useSignUp()
   const location = useGetLocation()
+  console.log('location', location)
   const { errors } = methods.formState
 
   return (
     <FormProvider {...methods}>
-      <Button
-        variant="text"
-        className="flex h-auto w-full items-center justify-center gap-2 p-0"
-        as="link"
-        href="/sign-in"
-      >
-        Já possui uma conta? Faça login <ArrowRight className="h-4 w-4" />
-      </Button>
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className="flex flex-col justify-between gap-4"
+        className="flex w-full flex-1 flex-col justify-between gap-3"
       >
-        <div className="flex flex-col justify-between gap-4">
+        <div className="flex flex-col justify-between gap-2">
           <div className="flex flex-col gap-2">
             <Label htmlFor="name">Nome da organização</Label>
             <Input
@@ -95,10 +88,17 @@ export const SignUpForm = () => {
             />
           </div>
         </div>
-
         <div className="flex w-full flex-col gap-4">
           <Button type="submit" variant="primary" className="w-full">
             Cadastrar
+          </Button>
+          <Button
+            variant="text"
+            className="flex w-full items-center justify-center gap-2 p-0"
+            as="link"
+            href="/sign-in"
+          >
+            Já possui uma conta? Faça login <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
       </form>

@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/providers/theme'
+import Loading from './loading'
+import { Suspense } from 'react'
 
 const roboto = Nunito({
   variable: '--font-nunito',
@@ -26,7 +28,9 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} flex h-screen w-screen items-center justify-center overflow-hidden antialiased`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </ThemeProvider>
       </body>
     </html>
   )
