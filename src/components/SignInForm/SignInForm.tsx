@@ -37,6 +37,7 @@ export const SignInForm = () => {
             Login
           </Button>
           <Button
+            type="button"
             variant="secondary"
             className="w-full"
             as="link"
