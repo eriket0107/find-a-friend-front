@@ -1,15 +1,28 @@
 'use client'
+
 import { useLocation } from '@/services/location/useLocation'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 export const useGetLocation = () => {
+  const cachedCoors =
+    typeof window !== 'undefined'
+      ? JSON.parse(localStorage.getItem('@find-a-friend:coordinators') || '{}')
+      : {
+          latitude: 0,
+          longitude: 0,
+        }
+
   const [coords, setCoords] = useState<{
     latitude: number
     longitude: number
-  }>({
-    latitude: 0,
-    longitude: 0,
-  })
+  }>(cachedCoors)
+
+  useEffect(() => {
+    if (!!cachedCoors.latitude && !!cachedCoors.longitude) return
+
+    localStorage.setItem('@find-a-friend:coordinators', JSON.stringify(coords))
+  }, [cachedCoors])
+
   const [permissionStatus, setPermissionStatus] =
     useState<PermissionState>('prompt')
   const [locationError, setLocationError] = useState<string>('')
@@ -53,7 +66,7 @@ export const useGetLocation = () => {
         }
       }
     )
-  }, [])
+  }, [navigator.geolocation])
 
   const { location, error, isLoading } = useLocation({
     permissionStatus,
