@@ -27,7 +27,7 @@ export const InputPassword = ({
       <Input
         id={name}
         type={showPassword ? 'text' : 'password'}
-        placeholder="********"
+        placeholder={showPassword ? '********' : 'Digite a senha'}
         errorMessage={error}
         icon={
           <Icon
