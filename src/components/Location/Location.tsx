@@ -1,12 +1,13 @@
 'use client'
-import { useGetLocation } from '@/hooks/use-get-location'
+import { useGetLocation } from '@/hooks/useGetLocation'
 import { LocationSkeleton } from './LocationSkeleton'
 import { Info, MapPin, X } from 'lucide-react'
 import Link from 'next/link'
 
 export const Location = () => {
-  const { location, isLoading, permissionStatus } = useGetLocation()
-  if (isLoading) return <LocationSkeleton />
+  const { location, isLoading, permissionStatus, error } = useGetLocation()
+  if (isLoading || !location.city || !location.state)
+    return <LocationSkeleton />
 
   if (permissionStatus === 'denied')
     return (

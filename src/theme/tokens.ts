@@ -12,6 +12,7 @@ export const colors = {
     primary: '#FDECED',
     secondary: '#F7F7F7',
     tertiary: '#E9E9E9',
+    quaternary: '#F5F8FA',
   },
 
   // Text Colors

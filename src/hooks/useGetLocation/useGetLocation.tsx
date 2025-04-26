@@ -1,5 +1,5 @@
 'use client'
-import { useLocation } from '@/services/location/use-location'
+import { useLocation } from '@/services/location/useLocation'
 import { useEffect, useState } from 'react'
 
 export const useGetLocation = () => {
